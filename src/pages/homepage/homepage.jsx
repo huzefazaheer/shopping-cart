@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useOutletContext } from "react-router-dom"
 import styles from "./styles.module.css"
 
 import { useEffect, useState } from "react"
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 export default function Homepage(){
 
     const [data, setData] = useState([])
+    const { cartCount, setCartCount } = useOutletContext();
 
     useEffect(()=>{
         async function getData() {
@@ -27,6 +28,7 @@ export default function Homepage(){
     return(
         <>
         <h1>Home</h1>
+        <p>{cartCount}</p>
         {products}</>
     )
 }
