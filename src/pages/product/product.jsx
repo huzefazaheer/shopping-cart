@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./styles.module.css"
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 
@@ -6,7 +7,7 @@ export default function Product(){
     const { cartCount, setCartCount, data } = useOutletContext();
     const navigate = useNavigate();
     const {id} = useParams()
-
+    const [quantity, setQuantity] = useState()
 
     return(
         <>
@@ -16,7 +17,8 @@ export default function Product(){
             <img src={data[id].image}></img>
             <p>{data[id].price}</p>
         </div>
-        <button className={styles.addtocard} onClick={()=>{setCartCount(cartCount+1)
+        <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)}></input>
+        <button className={styles.addtocard} onClick={()=>{setCartCount(cartCount+quantity)
         navigate("/")
         }}>Add to Cart</button>
         <p>{cartCount}</p>
