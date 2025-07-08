@@ -1,16 +1,19 @@
-import { Link, useOutletContext } from "react-router-dom"
+import { Link, useNavigate, useOutletContext } from "react-router-dom"
 import styles from "./styles.module.css"
 
 export default function Homepage(){
 
+    const navigate = useNavigate()
     
-    const { cartCount, setCartCount,data } = useOutletContext();
+    const { cartCount, setCartCount ,data } = useOutletContext();
 
 
     const products = data.map(item => {
         return(
-            <div className={styles.product}>
-                <Link to={"/product/"+item.id}>{item.title}</Link>
+            <div className={styles.product} onClick={() => navigate("product/"+item.id)}>
+                <h3>{item.title}</h3>
+                <img src={item.image}></img>
+                <p>{item.price}</p>
             </div>
         )
     })
@@ -19,6 +22,8 @@ export default function Homepage(){
         <>
         <h1>Home</h1>
         <p>{cartCount}</p>
-        {products}</>
+        <div className={styles.productholder}>
+        {products}    
+        </div></>
     )
 }
