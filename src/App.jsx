@@ -16,10 +16,19 @@ function App() {
     }, [])
 
   const [cartCount, setCartCount] = useState(0)
+  const [price, setPrice] = useState(0)
 
   return (
     <>
-      <Outlet context={{cartCount, setCartCount, data}}/>
+    <div className='cart'>
+      <p>Cart: {cartCount}</p>
+<button className='btncheckout' onClick={(e) => {
+            alert("Chekout " + cartCount + " items totalling " + price)
+        }}>Checkout</button>
+    </div>
+      
+      <Outlet context={{cartCount, setCartCount, data, price, setPrice}}/>
+      
     </>
   )
 }

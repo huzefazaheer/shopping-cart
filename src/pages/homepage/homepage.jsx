@@ -5,7 +5,7 @@ export default function Homepage(){
 
     const navigate = useNavigate()
     
-    const { cartCount, setCartCount ,data } = useOutletContext();
+    const { cartCount, setCartCount ,data, price } = useOutletContext();
 
 
     const products = data.map(item => {
@@ -21,9 +21,9 @@ export default function Homepage(){
     return(
         <>
         <h1>Home</h1>
-        <p>{cartCount}</p>
         <div className={styles.productholder}>
         {products}    
-        </div></>
+        </div>
+        </>
     )
 }

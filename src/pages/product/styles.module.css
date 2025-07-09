@@ -4,3 +4,9 @@
 .addtocard{
     margin-top: 20px;
 }
+.input{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
