@@ -13,9 +13,12 @@ export default function Product(){
         <>
         <h1>Product</h1>
         <div className={styles.product}>
-            <h2>{data[id].title}</h2>
-            <img src={data[id].image}></img>
-            <p>{data[id].price}</p>
+            <h2>{data[id-1].title}</h2>
+            <div className={styles.wrapper}>
+                <img className={styles.image} src={data[id-1].image}></img>
+                <p className={styles.desc}>{data[id-1].description}</p>
+            </div>
+            <p>{data[id-1].price}</p>
         </div>
         <input className={styles.input} type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)}></input>
         <button className={styles.addtocard} onClick={()=>{setCartCount(parseInt(cartCount)+parseInt(quantity))

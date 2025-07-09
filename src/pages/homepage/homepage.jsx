@@ -10,7 +10,8 @@ export default function Homepage(){
 
     const products = data.map(item => {
         return(
-            <div className={styles.product} onClick={() => navigate("product/"+item.id)}>
+            <div className={styles.product} onClick={() =>{ navigate("product/"+item.id)
+            }}>
                 <h3>{item.title}</h3>
                 <img src={item.image}></img>
                 <p>{item.price}</p>
