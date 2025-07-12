@@ -1,9 +1,14 @@
-import { Outlet } from 'react-router-dom'
+import { BrowserRouter, createBrowserRouter, Outlet, Route, RouterProvider, Routes } from 'react-router-dom'
 import './App.css'
-import Homepage from './pages/homepage/homepage'
 import { useEffect, useState } from 'react'
+import Product from './pages/product/product'
+import Homepage from './pages/homepage/homepage'
+import Error from './pages/error/error'
 
 function App() {
+
+  const [cartCount, setCartCount] = useState(0)
+  const [price, setPrice] = useState(0)
   
   const [data, setData] = useState([])
     useEffect(()=>{
@@ -15,9 +20,6 @@ function App() {
         getData()
     }, [])
 
-  const [cartCount, setCartCount] = useState(0)
-  const [price, setPrice] = useState(0)
-
   return (
     <>
     <div className='cart'>
@@ -27,7 +29,15 @@ function App() {
         }}>Checkout</button>
     </div>
       
-      <Outlet context={{cartCount, setCartCount, data, price, setPrice}}/>
+         <BrowserRouter>
+         <Routes>
+
+               <Route path="/" element={<Homepage  data={data}/>} />
+               <Route path="product/:id" element={<Product  data={data} setCartCount={setCartCount} cartCount={cartCount} setPrice={setPrice}/>} />
+               <Route path="*" element={<Error/>} />
+              
+         </Routes>
+      </BrowserRouter>
       
     </>
   )
